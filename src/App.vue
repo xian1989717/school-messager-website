@@ -6,8 +6,8 @@
     <el-container>
       <el-aside width="200px">
         <p>
-          <router-link to="/home">
-            Go to Foo
+          <router-link to="/gradeGroup">
+            年级组
           </router-link>
         </p>
       </el-aside>
