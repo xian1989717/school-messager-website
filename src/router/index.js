@@ -12,11 +12,15 @@ export default new Router({
     },
     {
       path: '/',
-      component: resolve => require(['../App.vue'], resolve),
+      component: resolve => require(['../components/common/home.vue'], resolve),
       children: [
         {
-          path: 'gradeGroup',
+          path: '/gradeGroup',
           component: resolve => require(['../components/grade-group/index.vue'], resolve)
+        },
+        {
+          path: '/detail',
+          component: resolve => require(['../components/grade-group/detail.vue'], resolve)
         }
       ]
     }
