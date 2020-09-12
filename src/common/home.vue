@@ -2,7 +2,7 @@
   <el-container
     id="about"
     class="container">
-    <el-header>Header</el-header>
+    <el-header>西安新筑中心小学管理系统</el-header>
     <el-container>
       <el-aside width="200px">
         <p>

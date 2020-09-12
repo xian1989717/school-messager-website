@@ -60,7 +60,7 @@
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button @click="jumpDetail(scope.row)" type="text" size="small">查看</el-button>
+          <el-button @click="goDetail(scope.row)" type="text" size="small">查看</el-button>
           <el-button type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
@@ -70,11 +70,7 @@
 
 <script>
   export default {
-    methods: {
-      jumpDetail (row) {
-        this.$router.push({ path: '/detail', params: row })
-      }
-    },
+
 
     data () {
       return {
@@ -136,6 +132,11 @@
           zip: 200333
         }]
       }
+    },
+    methods: {
+      goDetail (row) {
+        this.$router.push({ path: '/gradeGroupDetail', params: row })
+      }
     }
   }
 </script>
@@ -144,7 +145,6 @@
   .el-main {
     background-color: #e9eef3;
     color: #333;
-    /* text-align: center; */
     line-height: 57px !important;
   }
 </style>

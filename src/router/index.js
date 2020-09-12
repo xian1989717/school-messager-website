@@ -8,18 +8,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/gradeGroup'
+      redirect: '/gradeGroup'  // 路由重定向
     },
     {
       path: '/',
-      component: resolve => require(['../components/common/home.vue'], resolve),
+      component: resolve => require(['../common/home.vue'], resolve),
       children: [
         {
           path: '/gradeGroup',
           component: resolve => require(['../components/grade-group/index.vue'], resolve)
         },
         {
-          path: '/detail',
+          path: '/gradeGroupDetail',
           component: resolve => require(['../components/grade-group/detail.vue'], resolve)
         }
       ]
