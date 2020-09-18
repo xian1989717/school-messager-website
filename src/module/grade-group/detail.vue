@@ -125,9 +125,13 @@
       <el-tab-pane label="附件" name="attachment" />
       <el-tab-pane label="图片" name="img" />
     </el-tabs>
-    <imgs v-if="activeName === 'img'" />
-    <attachments v-if="activeName === 'attachment'" />
-    <dlg-edit  />
+    <imgs
+      v-if="activeName === 'img'" />
+    <attachments
+      v-if="activeName === 'attachment'" />
+    <dlg-edit
+      :isShow="dlgState"
+      @close="closeDlg" />
   </div>
 </template>
 
@@ -144,7 +148,8 @@
     },
     data () {
       return {
-        activeName: 'attachment'
+        activeName: 'attachment',
+        dlgState: false
       }
     },
     methods: {
@@ -152,7 +157,10 @@
         this.activeName = tab.name
       },
       edit () {
-
+        this.dlgState = true
+      },
+      closeDlg () {
+        this.dlgState = false
       }
     }
   };

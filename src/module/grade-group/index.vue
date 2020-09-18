@@ -21,6 +21,44 @@
         width="120">
       </el-table-column>
       <el-table-column
+        prop="rank"
+        label="身份证号码"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="rank"
+        label="毕业学校"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="rank"
+        label="专业"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="进修时间"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="工作时间"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="性别"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="毕业时间"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="取得职称时间"
+        width="120" />
+      <el-table-column
+        prop="rank"
+        label="行政职务"
+        width="120" />
+      <el-table-column
         prop="address"
         label="联系地址"
         width="250">
@@ -143,8 +181,8 @@
 
 <style>
   /* .el-main {
-    background-color: #e9eef3;
-    color: #333;
-    line-height: 57px !important;
-  } */
+                                            background-color: #e9eef3;
+                                            color: #333;
+                                            line-height: 57px !important;
+                                          } */
 </style>
