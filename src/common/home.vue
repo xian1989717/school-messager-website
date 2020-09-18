@@ -37,10 +37,10 @@
     line-height: 200px;
   }
 
-  .el-main {
+  /* .el-main {
     background-color: #e9eef3;
     color: #333;
-  }
+  } */
 
   body > .el-container {
     margin-bottom: 40px;

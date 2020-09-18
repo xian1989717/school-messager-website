@@ -16,11 +16,11 @@ export default new Router({
       children: [
         {
           path: '/gradeGroup',
-          component: resolve => require(['../components/grade-group/index.vue'], resolve)
+          component: resolve => require(['../module/grade-group/index.vue'], resolve)
         },
         {
           path: '/gradeGroupDetail',
-          component: resolve => require(['../components/grade-group/detail.vue'], resolve)
+          component: resolve => require(['../module/grade-group/detail.vue'], resolve)
         }
       ]
     }
