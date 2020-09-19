@@ -6,7 +6,12 @@
         年级组
       </b>
       <div>
-        <el-button type="primary" @click="add">添加</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="add">
+          添加
+        </el-button>
       </div>
     </div>
     <el-table
@@ -106,9 +111,19 @@
         fixed="right"
         label="操作"
         width="100">
-        <template slot-scope="scope">
-          <el-button @click="goDetail(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">删除</el-button>
+        <template
+          slot-scope="scope">
+          <el-button
+            @click="goDetail(scope.row)"
+            type="text"
+            size="small">
+            查看
+          </el-button>
+          <el-button
+            type="text"
+            size="small">
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

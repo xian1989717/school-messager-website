@@ -11,8 +11,16 @@
         罗老师
       </b>
       <div>
-        <el-button @click="edit">编辑</el-button>
-        <el-button>删除</el-button>
+        <el-button
+          size="small"
+          type="primary"
+          @click="edit">
+          编辑
+        </el-button>
+        <el-button
+          size="small">
+          删除
+        </el-button>
       </div>
     </div>
 
