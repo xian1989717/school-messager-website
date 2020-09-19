@@ -1,10 +1,29 @@
 <template>
   <el-dialog
-    title="提示"
+    title="编辑"
     :visible.sync="isShow"
+    :modal-append-to-body='false'
+    :close-on-click-modal='false'
     width="30%"
     :before-close="handleClose">
-    <span>这是一段信息</span>
+    <el-form
+      label-width="80px">
+      <el-form-item
+        label="评分">
+        <el-input
+          v-model.number="formLabelAlign.score" />
+      </el-form-item>
+      <el-form-item
+        label="评价">
+        <el-input
+          v-model="formLabelAlign.appraise" />
+      </el-form-item>
+      <el-form-item
+        label="备注">
+        <el-input
+          v-model="formLabelAlign.remark" />
+      </el-form-item>
+    </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="cancel">取 消</el-button>
       <el-button type="primary" @click="save">确 定</el-button>
@@ -17,23 +36,22 @@
     props: ['isShow'],
     data () {
       return {
+        formLabelAlign: {
+          score: 100,
+          appraise: '',
+          remark: ''
+        }
       }
     },
     methods: {
-      handleClose (done) {
-        this.$confirm('确认关闭？')
-          // eslint-disable-next-line no-unused-vars
-          .then(_ => {
-            done();
-          })
-          // eslint-disable-next-line no-unused-vars
-          .catch(_ => { });
+      handleClose () {
+        this.cancel()
       },
       cancel () {
-        this.$emit('close', true)
+        this.$emit('close')
       },
       save () {
-        this.$emit('close', true)
+        this.$emit('close')
       }
     }
   }

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div
+      class="detail-header">
+      <b style="font-size:24px;">
+        年级组
+      </b>
+      <div>
+        <el-button type="primary" @click="add">添加</el-button>
+      </div>
+    </div>
     <el-table
       :data="tableData"
       border
@@ -103,13 +112,19 @@
         </template>
       </el-table-column>
     </el-table>
+    <dlg-add
+      :isShow="dlgState"
+      @close="closeDlg" />
   </div>
 </template>
 
 <script>
+  import DlgAdd from './dialog/dlg-add.vue'
+
   export default {
-
-
+    components: {
+      DlgAdd
+    },
     data () {
       return {
         tableData: [{
@@ -168,21 +183,30 @@
           city: '普陀区',
           address: '上海市普陀区金沙江路 1516 弄',
           zip: 200333
-        }]
+        }],
+        dlgState: false
       }
     },
     methods: {
       goDetail (row) {
         this.$router.push({ path: '/gradeGroupDetail', params: row })
+      },
+      closeDlg () {
+        this.dlgState = false
+      },
+      add () {
+        this.dlgState = true
       }
     }
   }
 </script>
 
-<style>
-  /* .el-main {
-                                            background-color: #e9eef3;
-                                            color: #333;
-                                            line-height: 57px !important;
-                                          } */
+<style scoped>
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0px;
+    height: 40px;
+    line-height: 40px;
+  }
 </style>
