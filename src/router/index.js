@@ -21,6 +21,10 @@ export default new Router({
         {
           path: '/gradeGroupDetail',
           component: resolve => require(['../module/grade-group/detail.vue'], resolve)
+        },
+        {
+          path: '/teacher',
+          component: resolve => require(['../module/teacher/index.vue'], resolve)
         }
       ]
     }

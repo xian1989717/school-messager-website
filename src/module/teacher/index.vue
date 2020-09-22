@@ -3,7 +3,7 @@
     <div
       class="detail-header">
       <b style="font-size:24px;">
-        年级组
+        教师
       </b>
       <div>
         <el-button
@@ -142,7 +142,15 @@
     },
     data () {
       return {
+        dlgState: false,
         tableData: [{
+          date: '2016-05-03',
+          name: '王小虎',
+          province: '上海',
+          city: '普陀区',
+          address: '上海市普陀区金沙江路 1518 弄',
+          zip: 200333
+        }, {
           date: '2016-05-02',
           name: '王小虎',
           province: '上海',
@@ -154,63 +162,51 @@
           name: '王小虎',
           province: '上海',
           city: '普陀区',
-          address: '上海市普陀区金沙江路 1517 弄',
+          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
           date: '2016-05-01',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
-          address: '上海市普陀区金沙江路 1519 弄',
+          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
-          date: '2016-05-03',
+          date: '2016-05-08',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
+          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
-          date: '2016-05-03',
+          date: '2016-05-06',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
+          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
-          date: '2016-05-03',
+          date: '2016-05-07',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
+          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1516 弄',
-          zip: 200333
-        }],
-        dlgState: false
+        }]
       }
     },
     methods: {
-      goDetail (row) {
-        this.$router.push({ path: '/gradeGroupDetail', params: row })
+      deleteRow (index, rows) {
+        rows.splice(index, 1);
       },
       closeDlg () {
         this.dlgState = false
       },
       add () {
         this.dlgState = true
+      },
+      goDetail () {
+
       }
     }
   }

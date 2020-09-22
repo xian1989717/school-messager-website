@@ -175,13 +175,13 @@
 </script>
 
 <style scoped>
-  .detail-header {
+  /* .detail-header {
     display: flex;
     justify-content: space-between;
     margin: 16px 0px;
     height: 40px;
     line-height: 40px;
-  }
+  } */
   .detail-label {
     display: inline-block;
     height: 36px;

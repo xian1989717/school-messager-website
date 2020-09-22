@@ -7,10 +7,19 @@
       西安新筑中心小学管理系统
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside
+        width="200px"
+        style="line-height:20px;">
         <p>
-          <router-link to="/gradeGroup">
+          <router-link
+            to="/gradeGroup">
             年级组
+          </router-link>
+        </p>
+        <p>
+          <router-link
+            to="/teacher">
+            教师
           </router-link>
         </p>
       </el-aside>
@@ -38,9 +47,9 @@
   }
 
   /* .el-main {
-    background-color: #e9eef3;
-    color: #333;
-  } */
+                  background-color: #e9eef3;
+                  color: #333;
+                } */
 
   body > .el-container {
     margin-bottom: 40px;
