@@ -25,6 +25,10 @@ export default new Router({
         {
           path: '/teacher',
           component: resolve => require(['../module/teacher/index.vue'], resolve)
+        },
+        {
+          path: '/teacherDetail',
+          component: resolve => require(['../module/teacher/detail.vue'], resolve)
         }
       ]
     }

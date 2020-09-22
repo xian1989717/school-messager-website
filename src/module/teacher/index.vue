@@ -205,8 +205,8 @@
       add () {
         this.dlgState = true
       },
-      goDetail () {
-
+      goDetail (row) {
+        this.$router.push({ path: '/teacherDetail', params: row })
       }
     }
   }

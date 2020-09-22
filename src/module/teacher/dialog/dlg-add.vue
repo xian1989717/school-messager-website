@@ -236,9 +236,6 @@
         })
       }
     },
-    mounted () {
-      console.log('1234')
-    },
     methods: {
       handleClose () {
         this.cancel()
@@ -249,13 +246,13 @@
       save () {
         this.$refs.formLabelAlign.validate((valid) => {
           if (valid) {
-            alert('submit!');
+            alert('submit!')
+            this.$emit('close')
           } else {
-            console.log('error submit!!');
-            return false;
+            console.log('error submit!!')
+            return false
           }
-        });
-        // this.$emit('close')
+        })
       }
     }
   }

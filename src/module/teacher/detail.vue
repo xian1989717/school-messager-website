@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/gradeGroup' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/teacher' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item><a href="/">详情</a></el-breadcrumb-item>
     </el-breadcrumb>
 
@@ -146,13 +146,11 @@
 <script>
   import Imgs from './components/v-imgs.vue'
   import Attachments from './components/v-atttachments.vue'
-  import DlgEdit from './dialog/dlg-edit.vue'
 
   export default {
     components: {
       Imgs,
-      Attachments,
-      DlgEdit
+      Attachments
     },
     data () {
       return {
