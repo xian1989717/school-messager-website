@@ -30,46 +30,46 @@
         width="120">
       </el-table-column>
       <el-table-column
-        prop="rank"
+        prop="positionalTitles"
         label="职称"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="rank"
+        prop="personId"
         label="身份证号码"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="rank"
+        prop="graduateSchool"
         label="毕业学校"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="rank"
+        prop="speciality"
         label="专业"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="studiesTime"
         label="进修时间"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="workStartTime"
         label="工作时间"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="sex"
         label="性别"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="graduationTime"
         label="毕业时间"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="obtainPositionalTitlesTime"
         label="取得职称时间"
         width="120" />
       <el-table-column
-        prop="rank"
+        prop="administrativePosition"
         label="行政职务"
         width="120" />
       <el-table-column
@@ -78,27 +78,32 @@
         width="250">
       </el-table-column>
       <el-table-column
-        prop="phoneNumber"
+        prop="phone"
         label="联系电话"
         width="300">
       </el-table-column>
       <el-table-column
-        prop="emergencyConPerson"
+        prop="sosPerson"
         label="紧急联络人"
         width="300">
       </el-table-column>
       <el-table-column
-        prop="isHeadmaster"
+        prop="sosPersonPhone"
+        label="紧急联络人电话"
+        width="300">
+      </el-table-column>
+      <el-table-column
+        prop="isClassTeacher"
         label="是否班主任"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="subject"
+        prop="name"
         label="所任学科"
         width="120">
       </el-table-column>
       <el-table-column
-        prop="partyMember"
+        prop="isPartyMember"
         label="是否党员"
         width="120">
       </el-table-column>
@@ -143,61 +148,16 @@
     data () {
       return {
         dlgState: false,
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData: []
       }
+    },
+    async mounted () {
+      this.tableData = await this.$store.dispatch('getTeacherAll')
+      console.log(this.tableData)
     },
     methods: {
       deleteRow (index, rows) {
-        rows.splice(index, 1);
+        rows.splice(index, 1)
       },
       closeDlg () {
         this.dlgState = false
