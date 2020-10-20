@@ -29,8 +29,17 @@
 
       <el-form-item
         label="职称">
-        <el-input
-          v-model="formLabelAlign.positionalTitles" />
+        <el-select
+          v-model="formLabelAlign.positionalTitles"
+          placeholder="请选择"
+          style="width:202px;">
+          <el-option
+            v-for="item in positionalTitleOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </el-form-item>
 
       <el-form-item
@@ -88,41 +97,61 @@
         <el-input
           v-model="formLabelAlign.administrativePosition" />
       </el-form-item>
+
       <el-form-item
         label="联系地址"
         prop="address">
         <el-input
           v-model="formLabelAlign.address" />
       </el-form-item>
+
       <el-form-item
         label="联系电话"
         prop="phone">
         <el-input
           v-model="formLabelAlign.phone" />
       </el-form-item>
+
       <el-form-item
         label="紧急联系人">
         <el-input
           v-model="formLabelAlign.sosPerson" />
       </el-form-item>
+
       <el-form-item
         label="紧急联系人电话">
         <el-input
           v-model="formLabelAlign.sosPersonPhone" />
       </el-form-item>
+
       <el-form-item
         label="所任学科"
-        prop="teachSubject">
-        <el-input
-          v-model="formLabelAlign.teachSubject" />
+        prop="teachSubjectId">
+        <el-select
+          v-model="formLabelAlign.teachSubjectId"
+          placeholder="请选择"
+          style="width:202px;">
+          <el-option
+            v-for="item in teachSubjectOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item
         label="性别">
         <el-radio-group
           v-model="formLabelAlign.sex"
           style="width:202px;">
-          <el-radio label="男">男</el-radio>
-          <el-radio label="女">女</el-radio>
+          <el-radio
+            label="male">
+            男性
+          </el-radio>
+          <el-radio
+            label="feMale">
+            女性
+          </el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item
@@ -176,10 +205,55 @@
 </template>
 
 <script>
+  import moment from 'moment'
   export default {
     props: ['isShow'],
     data () {
       return {
+        positionalTitleOptions: Object.freeze([
+          {
+            value: 'primary',
+            label: '初级'
+          },
+          {
+            value: 'intermediate',
+            label: '中级'
+          },
+          {
+            value: 'senior',
+            label: '高级'
+          }
+        ]),
+        teachSubjectOptions: Object.freeze([
+          {
+            value: '1',
+            label: '语文'
+          },
+          {
+            value: '2',
+            label: '数学'
+          },
+          {
+            value: '3',
+            label: '英语'
+          },
+          {
+            value: '4',
+            label: '思想品德'
+          },
+          {
+            value: '5',
+            label: '美术'
+          },
+          {
+            value: '6',
+            label: '音乐'
+          },
+          {
+            value: '7',
+            label: '体育'
+          }
+        ]),
         formLabelAlign: {
           name: '',
           age: null,
@@ -189,7 +263,7 @@
           speciality: '',
           studiesTime: new Date(),
           workStartTime: new Date(),
-          sex: '男',
+          sex: 'male',
           graduationTime: new Date(),
           obtainPositionalTitlesTime: new Date(),
           administrativePosition: '',
@@ -198,7 +272,7 @@
           sosPerson: '',
           sosPersonPhone: null,
           isClassTeacher: false,
-          teachSubject: '',
+          teachSubjectId: '',
           isPartyMember: false,
           remark: ''
         },
@@ -207,7 +281,17 @@
             { required: true, message: '名称不能为空', trigger: 'blur' }
           ],
           age: [
-            { required: true, message: '年龄不能为空', trigger: 'blur' }
+            { required: true, message: '年龄不能为空', trigger: 'blur' },
+            {
+              validator (rule, value, callback) {
+                if (Number.isInteger(Number(value)) && Number(value) >= 18 && Number(value) <= 120) {
+                  callback()
+                } else {
+                  callback(new Error('年龄范围为18到120之间'))
+                }
+              },
+              trigger: 'blur'
+            }
           ],
           personId: [
             { required: true, message: '身份证号码不能为空', trigger: 'blur' }
@@ -230,7 +314,7 @@
           phone: [
             { required: true, message: '联系电话不能为空', trigger: 'blur' }
           ],
-          teachSubject: [
+          teachSubjectId: [
             { required: true, message: '所任学科不能为空', trigeer: 'blur' }
           ]
         })
@@ -244,10 +328,26 @@
         this.$emit('close')
       },
       save () {
-        this.$refs.formLabelAlign.validate((valid) => {
+        this.$refs.formLabelAlign.validate(async (valid) => {
           if (valid) {
-            alert('submit!')
-            this.$emit('close')
+            const params = Object.assign(
+              this.formLabelAlign,
+              {
+                studiesTime: moment(this.formLabelAlign.studiesTime).format('YYYY-MM-DD'),
+                workStartTime: moment(this.formLabelAlign.workStartTime).format('YYYY-MM-DD'),
+                graduationTime: moment(this.formLabelAlign.graduationTime).format('YYYY-MM-DD'),
+                obtainPositionalTitlesTime: moment(this.formLabelAlign.obtainPositionalTitlesTime).format('YYYY-MM-DD')
+              }
+            )
+
+            const res = await this.$store.dispatch(
+              'addTeacher',
+              params
+            )
+
+            if (res.data) {
+              this.$emit('close')
+            }
           } else {
             console.log('error submit!!')
             return false
