@@ -28,6 +28,7 @@ export default new Router({
         },
         {
           path: '/teacherDetail',
+          name: 'teacherDetail',
           component: resolve => require(['../module/teacher/detail.vue'], resolve)
         }
       ]

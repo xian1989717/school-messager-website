@@ -192,7 +192,7 @@
         this.dlgState = true
       },
       goDetail (row) {
-        this.$router.push({ path: '/teacherDetail', params: row })
+        this.$router.push({ name: 'teacherDetail', params: row })
       },
       positionalTitlesFormatter (row) {
         return this.positionalTitles[row.positionalTitles]

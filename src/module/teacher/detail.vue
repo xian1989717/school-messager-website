@@ -8,7 +8,7 @@
     <div
       class="detail-header">
       <b style="font-size:24px;">
-        罗老师
+        {{detailData.name}}
       </b>
       <div>
         <el-button
@@ -28,103 +28,103 @@
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">姓名：</label>
-          <span>罗老师</span>
+          <span>{{detailData.name}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">年龄：</label>
-          <span>18</span>
+          <span>{{detailData.age}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">职称：</label>
-          <span>18</span>
+          <span>{{detailData.positionalTitles}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">联系地址：</label>
-          <span>18</span>
+          <label class="detail-label">身份证号码：</label>
+          <span>{{detailData.personId}}</span>
         </div>
       </el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">姓名：</label>
-          <span>罗老师</span>
+          <label class="detail-label">毕业学校：</label>
+          <span>{{detailData.graduateSchool}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">年龄：</label>
-          <span>18</span>
+          <label class="detail-label">专业：</label>
+          <span>{{detailData.speciality}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">职称：</label>
-          <span>18</span>
+          <label class="detail-label">进修时间：</label>
+          <span>{{detailData.studiesTime}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">联系地址：</label>
-          <span>18</span>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <label class="detail-label">姓名：</label>
-          <span>罗老师</span>
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <label class="detail-label">年龄：</label>
-          <span>18</span>
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <label class="detail-label">职称：</label>
-          <span>18</span>
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          <label class="detail-label">联系地址：</label>
-          <span>18</span>
+          <label class="detail-label">工作时间：</label>
+          <span>{{detailData.workStartTime}}</span>
         </div>
       </el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">姓名：</label>
-          <span>罗老师</span>
+          <label class="detail-label">性别：</label>
+          <span>{{detailData.gender}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">年龄：</label>
-          <span>18</span>
+          <label class="detail-label">毕业时间：</label>
+          <span>{{detailData.graduationTime}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
-          <label class="detail-label">职称：</label>
-          <span>18</span>
+          <label class="detail-label">取得职称时间：</label>
+          <span>{{detailData.obtainPositionalTitlesTime}}</span>
         </div>
       </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">行政职务：</label>
+          <span>{{detailData.administrativePosition}}</span>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">联系地址：</label>
-          <span>18</span>
+          <span>{{detailData.address}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">联系电话：</label>
+          <span>{{detailData.phone}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">紧急联络人：</label>
+          <span>{{detailData.sosPerson}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">紧急联络人电话：</label>
+          <span>{{detailData.sosPersonPhone}}</span>
         </div>
       </el-col>
     </el-row>
@@ -137,9 +137,9 @@
       v-if="activeName === 'img'" />
     <attachments
       v-if="activeName === 'attachment'" />
-    <dlg-edit
+    <!-- <dlg-edit
       :isShow="dlgState"
-      @close="closeDlg" />
+      @close="closeDlg" /> -->
   </div>
 </template>
 
@@ -155,8 +155,12 @@
     data () {
       return {
         activeName: 'attachment',
-        dlgState: false
+        dlgState: false,
+        detailData: {}
       }
+    },
+    mounted () {
+      this.detailData = this.$route.params
     },
     methods: {
       handleClick (tab) {
