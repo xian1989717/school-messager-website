@@ -8,7 +8,7 @@
     <div
       class="detail-header">
       <b style="font-size:24px;">
-        {{detailData.name}}
+        {{detailDate.name}}
       </b>
       <div>
         <el-button
@@ -28,25 +28,25 @@
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">姓名：</label>
-          <span>{{detailData.name}}</span>
+          <span>{{detailDate.name}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">年龄：</label>
-          <span>{{detailData.age}}</span>
+          <span>{{detailDate.age}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">职称：</label>
-          <span>{{detailData.positionalTitles}}</span>
+          <span>{{detailDate.positionalTitles | transferPositionalTitles}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">身份证号码：</label>
-          <span>{{detailData.personId}}</span>
+          <span>{{detailDate.personId}}</span>
         </div>
       </el-col>
     </el-row>
@@ -54,25 +54,25 @@
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">毕业学校：</label>
-          <span>{{detailData.graduateSchool}}</span>
+          <span>{{detailDate.graduateSchool}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">专业：</label>
-          <span>{{detailData.speciality}}</span>
+          <span>{{detailDate.speciality}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">进修时间：</label>
-          <span>{{detailData.studiesTime}}</span>
+          <span>{{detailDate.studiesTime | formatTime}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">工作时间：</label>
-          <span>{{detailData.workStartTime}}</span>
+          <span>{{detailDate.workStartTime | formatTime}}</span>
         </div>
       </el-col>
     </el-row>
@@ -80,25 +80,25 @@
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">性别：</label>
-          <span>{{detailData.gender}}</span>
+          <span>{{detailDate.gender | transferGender}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">毕业时间：</label>
-          <span>{{detailData.graduationTime}}</span>
+          <span>{{detailDate.graduationTime | formatTime}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">取得职称时间：</label>
-          <span>{{detailData.obtainPositionalTitlesTime}}</span>
+          <span>{{detailDate.obtainPositionalTitlesTime | formatTime}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">行政职务：</label>
-          <span>{{detailData.administrativePosition}}</span>
+          <span>{{detailDate.administrativePosition}}</span>
         </div>
       </el-col>
     </el-row>
@@ -106,25 +106,51 @@
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">联系地址：</label>
-          <span>{{detailData.address}}</span>
+          <span>{{detailDate.address}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">联系电话：</label>
-          <span>{{detailData.phone}}</span>
+          <span>{{detailDate.phone}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">紧急联络人：</label>
-          <span>{{detailData.sosPerson}}</span>
+          <span>{{detailDate.sosPerson}}</span>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple">
           <label class="detail-label">紧急联络人电话：</label>
-          <span>{{detailData.sosPersonPhone}}</span>
+          <span>{{detailDate.sosPersonPhone}}</span>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">是否班主任：</label>
+          <span>{{detailDate.isClassTeacher | transferBoolean}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">所任学科：</label>
+          <span>{{detailDate.subjectName}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">是否党员：</label>
+          <span>{{detailDate.isPartyMember | transferBoolean}}</span>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div class="grid-content bg-purple">
+          <label class="detail-label">备注：</label>
+          <span>{{detailDate.remark}}</span>
         </div>
       </el-col>
     </el-row>
@@ -137,43 +163,51 @@
       v-if="activeName === 'img'" />
     <attachments
       v-if="activeName === 'attachment'" />
-    <!-- <dlg-edit
+    <dlg-edit
+      :formLabelAlign="copyDetailDate"
       :isShow="dlgState"
-      @close="closeDlg" /> -->
+      @close="closeDlg" />
   </div>
 </template>
 
 <script>
+  import DlgEdit from './dialog/dlg-edit.vue'
   import Imgs from './components/v-imgs.vue'
   import Attachments from './components/v-atttachments.vue'
 
   export default {
     components: {
       Imgs,
-      Attachments
+      Attachments,
+      DlgEdit
     },
     data () {
       return {
         activeName: 'attachment',
         dlgState: false,
-        detailData: {}
+        detailDate: {},
+        copyDetailDate: {}
       }
     },
-    mounted () {
-      this.detailData = this.$route.params
+    created () {
+      this.detailDate = this.$route.params
+      console.log(this.detailDate)
     },
     methods: {
       handleClick (tab) {
         this.activeName = tab.name
       },
       edit () {
+        this.copyDetailDate = this._.cloneDeep(this.detailDate)
         this.dlgState = true
       },
-      closeDlg () {
+      async closeDlg () {
+        const { dispatch } = this.$store
+        this.detailDate = await dispatch('getTeacherById', this.detailDate.id)
         this.dlgState = false
       }
     }
-  };
+  }
 </script>
 
 <style scoped>

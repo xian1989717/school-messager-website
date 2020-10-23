@@ -148,7 +148,12 @@
 </template>
 
 <script>
-  import dayjs from 'dayjs'
+  import {
+    formatTime,
+    transferBoolean,
+    transferGender,
+    transferPositionalTitles
+  } from '../../unit/format.js'
   import DlgAdd from './dialog/dlg-add.vue'
 
   export default {
@@ -159,19 +164,36 @@
       return {
         dlgState: false,
         tableData: [],
-        positionalTitles: Object.freeze({
-          primary: '初级',
-          intermediate: '中级',
-          senior: '高级'
-        }),
-        transferBoolean: Object.freeze({
-          true: '是',
-          false: '否'
-        }),
-        transferGender: Object.freeze({
-          male: '男性',
-          feMale: '女性'
-        })
+        teachSubjectOptions: Object.freeze([
+          {
+            value: '1',
+            label: '语文'
+          },
+          {
+            value: '2',
+            label: '数学'
+          },
+          {
+            value: '3',
+            label: '英语'
+          },
+          {
+            value: '4',
+            label: '思想品德'
+          },
+          {
+            value: '5',
+            label: '美术'
+          },
+          {
+            value: '6',
+            label: '音乐'
+          },
+          {
+            value: '7',
+            label: '体育'
+          }
+        ])
       }
     },
     async mounted () {
@@ -192,19 +214,28 @@
         this.dlgState = true
       },
       goDetail (row) {
-        this.$router.push({ name: 'teacherDetail', params: row })
+        this.$router.push(
+          {
+            name: 'teacherDetail',
+            params: Object.assign(
+              row,
+              {
+                teachSubjectId: `${row.teachSubjectId}`
+              }
+            )
+          })
       },
       positionalTitlesFormatter (row) {
-        return this.positionalTitles[row.positionalTitles]
+        return transferPositionalTitles(row.positionalTitles)
       },
       formatTime (row, column, cellValue) {
-        return dayjs(cellValue).format('YYYY-MM-DD')
+        return formatTime(cellValue)
       },
       formatBoolean (row, column, cellValue) {
-        return this.transferBoolean[cellValue]
+        return transferBoolean(cellValue)
       },
       formatGender (row, column, cellValue) {
-        return this.transferGender[cellValue]
+        return transferGender(cellValue)
       },
       async getTeacherList () {
         this.tableData = await this.$store.dispatch('getTeacherAll')

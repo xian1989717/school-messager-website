@@ -142,7 +142,7 @@
       <el-form-item
         label="性别">
         <el-radio-group
-          v-model="formLabelAlign.sex"
+          v-model="formLabelAlign.gender"
           style="width:202px;">
           <el-radio
             label="male">
@@ -159,8 +159,8 @@
         <el-radio-group
           v-model="formLabelAlign.isClassTeacher"
           style="width:202px;">
-          <el-radio :label="true">是</el-radio>
-          <el-radio :label="false">否</el-radio>
+          <el-radio label="true">是</el-radio>
+          <el-radio label="false">否</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item
@@ -168,8 +168,8 @@
         <el-radio-group
           v-model="formLabelAlign.isPartyMember"
           style="width:202px;">
-          <el-radio :label="true">是</el-radio>
-          <el-radio :label="false">否</el-radio>
+          <el-radio label="true">是</el-radio>
+          <el-radio label="false">否</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -197,7 +197,7 @@
       <el-button
         size="small"
         type="primary"
-        @click="save('formLabelAlign')">
+        @click="update">
         确 定
       </el-button>
     </span>
@@ -207,7 +207,10 @@
 <script>
   import moment from 'moment'
   export default {
-    props: ['isShow'],
+    props: [
+      'isShow',
+      'formLabelAlign'
+    ],
     data () {
       return {
         positionalTitleOptions: Object.freeze([
@@ -224,7 +227,7 @@
             label: '高级'
           }
         ]),
-        teachSubjectOptions: Object.freeze([
+        teachSubjectOptions: [
           {
             value: '1',
             label: '语文'
@@ -253,29 +256,7 @@
             value: '7',
             label: '体育'
           }
-        ]),
-        formLabelAlign: {
-          name: '',
-          age: null,
-          positionalTitles: '',
-          personId: null,
-          graduateSchool: '',
-          speciality: '',
-          studiesTime: new Date(),
-          workStartTime: new Date(),
-          sex: 'male',
-          graduationTime: new Date(),
-          obtainPositionalTitlesTime: new Date(),
-          administrativePosition: '',
-          address: '',
-          phone: null,
-          sosPerson: '',
-          sosPersonPhone: null,
-          isClassTeacher: false,
-          teachSubjectId: '',
-          isPartyMember: false,
-          remark: ''
-        },
+        ],
         rules: Object.freeze({
           name: [
             { required: true, message: '名称不能为空', trigger: 'blur' }
@@ -327,7 +308,7 @@
       cancel () {
         this.$emit('close')
       },
-      save () {
+      update () {
         this.$refs.formLabelAlign.validate(async (valid) => {
           if (valid) {
             const params = Object.assign(
@@ -339,13 +320,12 @@
                 obtainPositionalTitlesTime: moment(this.formLabelAlign.obtainPositionalTitlesTime).format('YYYY-MM-DD')
               }
             )
-
             const res = await this.$store.dispatch(
-              'addTeacher',
+              'updateTeacher',
               params
             )
 
-            if (res.state) {
+            if (res) {
               this.$emit('close')
             }
           } else {

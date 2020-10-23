@@ -1,15 +1,24 @@
 /* eslint-disable no-unused-vars */
-import http from '../../../unit/http'
+import { _get, _post, _delete, _put, URL } from '../../../unit/http'
 
 const actions = {
   async getTeacherAll () {
-    return await http.get(http.URL + '/teacher')
+    return await _get(URL + '/teacher')
   },
   async addTeacher ({ commit }, data) {
-    return await http.post(http.URL + '/teacher', data)
+    return await _post(URL + '/teacher', data)
   },
   async deleteTeacher ({ commit }, id) {
-    return await http.delete(http.URL + '/teacher/' + id)
+    return await _delete(URL + '/teacher/' + id)
+  },
+  async updateTeacher ({ commit }, params) {
+    const { id } = params
+    delete params.id
+    delete params.subjectName
+    return await _put(URL + '/teacher/' + id, params)
+  },
+  async getTeacherById ({ commit }, id) {
+    return await _get(URL + '/teacher/' + id)
   }
 }
 export default {
