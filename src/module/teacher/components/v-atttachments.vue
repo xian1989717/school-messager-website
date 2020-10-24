@@ -1,7 +1,8 @@
 <template>
   <div>
     <el-upload
-      action="https://jsonplaceholder.typicode.com/posts/">
+      :show-file-list="false"
+      :action="urlVal">
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
     <el-table
@@ -31,10 +32,19 @@
 
 <script>
   export default {
+    props: [
+      'id'
+    ],
     data () {
       return {
         tableData: [],
         // fileList: []
+      }
+    },
+    computed: {
+      urlVal () {
+        console.log(this.id)
+        return `http://localhost:3000/teacher/attachment/${this.id}`
       }
     },
     methods: {

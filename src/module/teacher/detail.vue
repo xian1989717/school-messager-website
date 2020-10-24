@@ -162,7 +162,8 @@
     <imgs
       v-if="activeName === 'img'" />
     <attachments
-      v-if="activeName === 'attachment'" />
+      v-if="activeName === 'attachment'"
+      :id="detailDate.id" />
     <dlg-edit
       :formLabelAlign="copyDetailDate"
       :isShow="dlgState"
@@ -211,7 +212,7 @@
           const { dispatch } = this.$store
           const res = await dispatch('teacher/getTeacherById', this.detailDate.id)
           this.detailDate = Object.assign(res, { teachSubjectId: `${res.teachSubjectId}` })
-        } 
+        }
         this.dlgState = false
       }
     }
