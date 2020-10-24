@@ -171,6 +171,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import DlgEdit from './dialog/dlg-edit.vue'
   import Imgs from './components/v-imgs.vue'
   import Attachments from './components/v-atttachments.vue'
@@ -189,9 +190,13 @@
         copyDetailDate: {}
       }
     },
-    created () {
-      this.detailDate = this.$route.params
-      console.log(this.detailDate)
+    computed: {
+      ...mapState({
+        activeItem: state => state.teacher.activeItem
+      })
+    },
+    mounted () {
+      this.detailDate = this.activeItem
     },
     methods: {
       handleClick (tab) {
@@ -201,9 +206,12 @@
         this.copyDetailDate = this._.cloneDeep(this.detailDate)
         this.dlgState = true
       },
-      async closeDlg () {
-        const { dispatch } = this.$store
-        this.detailDate = await dispatch('getTeacherById', this.detailDate.id)
+      async closeDlg (val) {
+        if (val) {
+          const { dispatch } = this.$store
+          const res = await dispatch('teacher/getTeacherById', this.detailDate.id)
+          this.detailDate = Object.assign(res, { teachSubjectId: `${res.teachSubjectId}` })
+        } 
         this.dlgState = false
       }
     }

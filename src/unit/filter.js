@@ -6,7 +6,7 @@ import {
   transferBoolean,
   transferGender,
   transferPositionalTitles
-} from './unit/format.js'
+} from './format.js'
 
 
 Vue.filter('formatTime', val => {

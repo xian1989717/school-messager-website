@@ -201,7 +201,7 @@
     },
     methods: {
       async deleteItem (rows) {
-        const res = await this.$store.dispatch('deleteTeacher', rows.id)
+        const res = await this.$store.dispatch('teacher/deleteTeacher', rows.id)
         if (res) {
           this.getTeacherList()
         }
@@ -214,16 +214,10 @@
         this.dlgState = true
       },
       goDetail (row) {
-        this.$router.push(
-          {
-            name: 'teacherDetail',
-            params: Object.assign(
-              row,
-              {
-                teachSubjectId: `${row.teachSubjectId}`
-              }
-            )
-          })
+        const { commit } = this.$store
+        const item = Object.assign(row, { teachSubjectId: `${row.teachSubjectId}` })
+        commit('teacher/setActiveItem', item)
+        this.$router.push({ name: 'teacherDetail' })
       },
       positionalTitlesFormatter (row) {
         return transferPositionalTitles(row.positionalTitles)
@@ -238,7 +232,7 @@
         return transferGender(cellValue)
       },
       async getTeacherList () {
-        this.tableData = await this.$store.dispatch('getTeacherAll')
+        this.tableData = await this.$store.dispatch('teacher/getTeacherAll')
       }
     }
   }

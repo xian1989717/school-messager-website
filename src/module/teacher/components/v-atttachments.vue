@@ -1,60 +1,46 @@
 <template>
-  <el-table
-    :data="tableData"
-    height="250"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
-  </el-table>
+  <div>
+    <el-upload
+      action="https://jsonplaceholder.typicode.com/posts/">
+      <el-button size="small" type="primary">点击上传</el-button>
+    </el-upload>
+    <el-table
+      :data="tableData"
+      height="250"
+      border
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="名称"
+        width="180" />
+      <el-table-column
+        prop="size"
+        label="大小"
+        width="180" />
+      <el-table-column
+        prop="date"
+        label="时间"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="remark"
+        label="备注" />
+    </el-table>
+  </div>
 </template>
 
 <script>
   export default {
-    data() {
+    data () {
       return {
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+        tableData: [],
+        // fileList: []
       }
+    },
+    methods: {
+      // handleChange (file, fileList) {
+      //   this.fileList = fileList.slice(-3)
+      // }
     }
   }
 </script>

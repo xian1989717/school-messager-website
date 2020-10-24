@@ -1,6 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { _get, _post, _delete, _put, URL } from '../../../unit/http'
 
+const state = {
+  activeItem: {}
+}
+
+const mutations = {
+  setActiveItem (state, item) {
+    state.activeItem = item
+  }
+}
+
 const actions = {
   async getTeacherAll () {
     return await _get(URL + '/teacher')
@@ -22,5 +32,8 @@ const actions = {
   }
 }
 export default {
+  namespaced: true,
+  state,
+  mutations,
   actions
 }

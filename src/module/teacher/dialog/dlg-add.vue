@@ -341,7 +341,7 @@
             )
 
             const res = await this.$store.dispatch(
-              'addTeacher',
+              'teacher/addTeacher',
               params
             )
 

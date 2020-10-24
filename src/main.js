@@ -5,7 +5,7 @@ import ElementUI from 'element-ui'
 import _ from 'loadsh'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/global.css'
-import './filter.js'
+import './unit/filter.js'
 import store from './module/store'
 
 

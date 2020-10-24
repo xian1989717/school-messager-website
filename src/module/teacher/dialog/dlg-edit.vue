@@ -306,7 +306,7 @@
         this.cancel()
       },
       cancel () {
-        this.$emit('close')
+        this.$emit('close', false)
       },
       update () {
         this.$refs.formLabelAlign.validate(async (valid) => {
@@ -321,12 +321,12 @@
               }
             )
             const res = await this.$store.dispatch(
-              'updateTeacher',
+              'teacher/updateTeacher',
               params
             )
 
             if (res) {
-              this.$emit('close')
+              this.$emit('close', true)
             }
           } else {
             console.log('error submit!!')

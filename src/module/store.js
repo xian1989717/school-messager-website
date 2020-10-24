@@ -1,9 +1,9 @@
-import vue from 'vue'
-import vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 import teacher from './teacher/store/index'
-// import mod2 from './mod2.js'
-vue.use(vuex)
-export default new vuex.Store({
+
+Vue.use(Vuex)
+export default new Vuex.Store({
   modules: {
     teacher
   }
