@@ -1,32 +1,28 @@
 <template>
   <el-dialog
-    title="添加"
+    title="更改"
     :visible.sync="isShow"
     :modal-append-to-body='false'
     :close-on-click-modal='false'
-    width="1020px"
+    width="400px"
     :before-close="handleClose">
     <el-form
       :inline="true"
       :rules="rules"
-      :model="formLabelAlign"
-      ref="formLabelAlign"
+      :model="data"
       size="medium"
       label-width="110px">
 
       <el-form-item
-        label="进修时间">
-        <el-date-picker
-          v-model="formLabelAlign.studiesTime"
-          style="width:202px;"
-          type="date"
-          placeholder="选择日期" />
+        label="名称">
+        <el-input
+          v-model="data.name" />
       </el-form-item>
 
       <el-form-item
         label="备注">
         <el-input
-          v-model="formLabelAlign.remark" />
+          v-model="data.remark" />
       </el-form-item>
 
     </el-form>
@@ -45,3 +41,28 @@
     </span>
   </el-dialog>
 </template>
+
+<script>
+  export default {
+    props: [
+      'data',
+      'isShow'
+    ],
+    data () {
+      return {
+        rules: Object.freeze({})
+      }
+    },
+    methods: {
+      handleClose () {
+
+      },
+      save () {
+
+      },
+      cancel () {
+
+      }
+    }
+  }
+</script>

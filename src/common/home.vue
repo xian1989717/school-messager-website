@@ -5,7 +5,9 @@
     <el-header
       style="background:#409EFF;color:white;">
       西安新筑中心小学管理系统
+      <span style="float:right;">XXX</span>
     </el-header>
+
     <el-container>
       <el-aside
         width="200px"
@@ -27,8 +29,15 @@
         <router-view></router-view>
       </el-main>
     </el-container>
+
   </el-container>
 </template>
+
+<script>
+  export default {
+
+  }
+</script>
 
 <style scoped>
   .el-header,
@@ -45,11 +54,6 @@
     text-align: center;
     line-height: 200px;
   }
-
-  /* .el-main {
-                  background-color: #e9eef3;
-                  color: #333;
-                } */
 
   body > .el-container {
     margin-bottom: 40px;

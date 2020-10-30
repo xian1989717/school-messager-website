@@ -3,6 +3,7 @@
     <el-upload
       :show-file-list="false"
       :action="urlVal"
+      :on-success="uploadFile"
       style="margin-bottom:15px;">
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
@@ -55,6 +56,9 @@
         </template>
       </el-table-column>
     </el-table>
+    <dlg-edit-attachment
+      :is-show="isShow"
+      :data="rowData" />
   </div>
 </template>
 
@@ -63,10 +67,20 @@
   import { formatTime } from '../../../unit/format.js'
   import { _downloadImg } from '../../../unit/http.js'
 
+  import DlgEditAttachment from '../dialog/dlg-edit-attachment.vue'
+
   export default {
+    components: {
+      DlgEditAttachment
+    },
     data () {
       return {
         tableDate: [],
+        isShow: false,
+        rowData: Object.freeze({
+          name: '',
+          remark: ''
+        })
         // fileList: []
       }
     },
@@ -83,8 +97,15 @@
       this.getAttachments()
     },
     methods: {
-      editItem () {
-
+      editItem (row) {
+        this.isShow = true
+        console.log(row)
+        this.rowData = row
+      },
+      uploadFile (response) {
+        if (response) {
+          this.getAttachments()
+        }
       },
       async downLoad (row) {
         const { id: teacherId } = this.activeItem
@@ -94,8 +115,9 @@
       },
       async deleteItem (row) {
         const { id: teacherId } = this.activeItem
+        const { id, attachmentKey } = row
         const { dispatch } = this.$store
-        const res = await dispatch('teacher/deleteTeacherAttachment', { teacherId, id: row.id })
+        const res = await dispatch('teacher/deleteTeacherAttachment', { teacherId, id, attachmentKey })
         if (res) {
           this.getAttachments()
         }

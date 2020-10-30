@@ -34,8 +34,8 @@ const actions = {
     return await _get(URL + '/teacher/attachment/' + id)
   },
   async deleteTeacherAttachment ({ commit }, obj) {
-    const { teacherId, id } = obj
-    return _delete(`${URL}/teacher/${teacherId}/attachment/${id}`)
+    const { teacherId, id, attachmentKey } = obj
+    return _delete(`${URL}/teacher/${teacherId}/attachment/${id}?attachmentKey=${attachmentKey}`)
   },
   async downLoadAttachment ({ commit }, obj) {
     const { teacherId, id } = obj
