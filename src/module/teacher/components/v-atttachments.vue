@@ -58,7 +58,9 @@
     </el-table>
     <dlg-edit-attachment
       :is-show="isShow"
-      :data="rowData" />
+      :data="rowData"
+      @close="closeDlg"
+      @success="editSuccess" />
   </div>
 </template>
 
@@ -81,7 +83,6 @@
           name: '',
           remark: ''
         })
-        // fileList: []
       }
     },
     computed: {
@@ -97,22 +98,33 @@
       this.getAttachments()
     },
     methods: {
+      editSuccess () {
+        this.getAttachments()
+        this.closeDlg()
+      },
+      closeDlg () {
+        this.isShow = false
+      },
+
       editItem (row) {
         this.isShow = true
-        console.log(row)
-        this.rowData = row
+        const { id, name, remark } = row
+        this.rowData = { id, name, remark }
       },
+
       uploadFile (response) {
         if (response) {
           this.getAttachments()
         }
       },
+
       async downLoad (row) {
         const { id: teacherId } = this.activeItem
         const { id } = row
         const url = `http://localhost:3000/teacher/${teacherId}/attachment/${id}/download`
         _downloadImg(url)
       },
+
       async deleteItem (row) {
         const { id: teacherId } = this.activeItem
         const { id, attachmentKey } = row
@@ -122,14 +134,17 @@
           this.getAttachments()
         }
       },
+
       formatTime (row, column, cellValue) {
         return formatTime(cellValue)
       },
+
       async getAttachments () {
         const { dispatch } = this.$store
         const { id } = this.activeItem
         this.tableDate = await dispatch('teacher/getTeacherAttachment', id)
       }
+
     }
   }
 </script>

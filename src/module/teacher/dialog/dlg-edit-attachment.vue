@@ -10,6 +10,7 @@
       :inline="true"
       :rules="rules"
       :model="data"
+      ref="attachment"
       size="medium"
       label-width="110px">
 
@@ -43,6 +44,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     props: [
       'data',
@@ -53,15 +56,32 @@
         rules: Object.freeze({})
       }
     },
+    computed: {
+      ...mapState({
+        activeItem: state => state.teacher.activeItem
+      })
+    },
     methods: {
       handleClose () {
-
+        this.cancel()
       },
       save () {
-
+        this.$refs.attachment.validate(async (valid) => {
+          if (valid) {
+            const { dispatch } = this.$store
+            this.data.teacherId = this.activeItem.id
+            const res = await dispatch(
+              'teacher/updateAttachment',
+              this.data
+            )
+            if (res) {
+              this.$emit('success')
+            }
+          }
+        })
       },
       cancel () {
-
+        this.$emit('close')
       }
     }
   }

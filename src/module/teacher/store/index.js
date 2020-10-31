@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { _get, _post, _delete, _put, URL } from '../../../unit/http'
+import { _get, _post, _delete, _put, URL, _patch } from '../../../unit/http'
 
 const state = {
   activeItem: {}
@@ -40,7 +40,14 @@ const actions = {
   async downLoadAttachment ({ commit }, obj) {
     const { teacherId, id } = obj
     return _get(`${URL}/teacher/${teacherId}/attachment/${id}/download`)
+  },
+  async updateAttachment ({ commit }, obj) {
+    const { teacherId, id } = obj
+    delete obj.teacherId
+    delete obj.id
+    return _patch(`${URL}/teacher/${teacherId}/attachment/${id}`, obj)
   }
+
 }
 export default {
   namespaced: true,

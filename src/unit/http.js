@@ -42,6 +42,16 @@ const _put = (url, data = null) => {
   })
 }
 
+const _patch = (url, data = null) => {
+  return new Promise((resolve, reject) => {
+    axios.patch(url, data).then(res => {
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+
 const _downloadImg = (src) => {
   var x = new XMLHttpRequest()
   x.open("GET", src, true)
@@ -62,5 +72,6 @@ export {
   _post,
   _delete,
   _put,
+  _patch,
   _downloadImg
 }
