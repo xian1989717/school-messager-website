@@ -4,7 +4,8 @@
       class="detail-tabs-button">
       <el-button
         size="small"
-        type="primary">
+        type="primary"
+        @click="add">
         新增
       </el-button>
       <div>
@@ -102,13 +103,22 @@
       </el-table-column>
     </el-table>
 
+    <dlg-scores
+      :is-show="isShow"
+      @close="closeDlg" />
   </div>
 </template>
 
 <script>
+  import DlgScores from '../dialog/dlg-scores.vue'
+
   export default {
+    components: {
+      DlgScores
+    },
     data () {
       return {
+        isShow: false,
         tableDate: [
 
         ],
@@ -118,11 +128,17 @@
       }
     },
     methods: {
+      add () {
+        this.isShow = true
+      },
       editItem () {
 
       },
       deleteItem () {
 
+      },
+      closeDlg () {
+        this.isShow = false
       }
     }
   }
