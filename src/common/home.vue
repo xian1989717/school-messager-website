@@ -12,16 +12,12 @@
       <el-aside
         width="200px"
         style="line-height:20px;">
-        <p>
+        <p
+          v-for="item in moduleName"
+          :key="item.id">
           <router-link
-            to="/gradeGroup">
-            年级组
-          </router-link>
-        </p>
-        <p>
-          <router-link
-            to="/teacher">
-            教师
+            :to="item.path">
+            {{item.name}}
           </router-link>
         </p>
       </el-aside>
@@ -35,7 +31,15 @@
 
 <script>
   export default {
-
+    data () {
+      return {
+        moduleName: [
+          { id: 1, name: '年级组', path: '/gradeGroup' },
+          { id: 2, name: '教师', path: '/teacher' },
+          { id: 3, name: '学生', path: '/student' }
+        ]
+      }
+    }
   }
 </script>
 
