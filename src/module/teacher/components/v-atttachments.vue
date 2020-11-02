@@ -5,7 +5,11 @@
       :action="urlVal"
       :on-success="uploadFile"
       style="margin-bottom:15px;">
-      <el-button size="small" type="primary">点击上传</el-button>
+      <el-button
+        size="small"
+        type="primary">
+        点击上传
+      </el-button>
     </el-upload>
     <el-table
       :data="tableDate"
