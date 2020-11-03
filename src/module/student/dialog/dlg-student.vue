@@ -9,61 +9,67 @@
     <el-form
       :inline="true"
       :rules="rules"
-      :model="formScores"
-      ref="formScores"
+      :model="student"
+      ref="student"
       size="medium"
       label-width="110px">
       <el-form-item
-        label="年级"
+        label="姓名"
         prop="name">
         <el-input
-          v-model="formScores.grade" />
+          v-model="student.name" />
       </el-form-item>
 
       <el-form-item
-        label="学期"
+        label="学号"
         prop="age">
         <el-input
-          v-model.number="formScores.semester" />
+          v-model.number="student.studentNo" />
       </el-form-item>
 
       <el-form-item
-        label="是否测试">
-        <el-select
-          v-model="formScores.isTest"
-          placeholder="请选择"
-          style="width:202px;">
-          <el-option
-            v-for="item in formScores"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item
-        label="语文">
+        label="出生日期">
         <el-input
-          v-model.number="formScores.chinese" />
+          v-model.number="student.birthday" />
       </el-form-item>
 
       <el-form-item
-        label="数学">
+        label="民族">
         <el-input
-          v-model="formScores.mathematics" />
+          v-model.number="student.nation" />
       </el-form-item>
 
       <el-form-item
-        label="英语">
+        label="性别">
         <el-input
-          v-model="formScores.english" />
+          v-model="student.sex" />
       </el-form-item>
 
+      <el-form-item
+        label="联系电话">
+        <el-input
+          v-model="student.contactPhone" />
+      </el-form-item>
+
+      <el-form-item
+        label="联系人">
+        <el-input
+          v-model="student.contacts" />
+      </el-form-item>
+      <!-- <el-form-item
+        label="地址">
+        <el-input
+          v-model="student.remark" />
+      </el-form-item>
+      <el-form-item
+        label="户籍地址">
+        <el-input
+          v-model="student.remark" />
+      </el-form-item> -->
       <el-form-item
         label="备注">
         <el-input
-          v-model="formScores.remark" />
+          v-model="student.remark" />
       </el-form-item>
     </el-form>
     <span
@@ -77,7 +83,7 @@
       <el-button
         size="small"
         type="primary"
-        @click="save('formScores')">
+        @click="save">
         确 定
       </el-button>
     </span>
@@ -91,12 +97,16 @@
     ],
     data () {
       return {
-        rules: [
-
-        ],
-        formScores: {
-
-        }
+        student: {
+          studentNo: null,
+          birthday: new Date(),
+          nation: '',
+          sex: 'male',
+          contactPhone: null,
+          contacts: '',
+          remark: ''
+        },
+        rules: []
       }
     },
     methods: {

@@ -77,13 +77,22 @@
         </template>
       </el-table-column>
     </el-table>
+    <dlg-student
+      :is-show="dlgShow"
+      @close="dlgClose" />
   </div>
 </template>
 
 <script>
+  import DlgStudent from './dialog/dlg-student.vue'
+
   export default {
+    components: {
+      DlgStudent
+    },
     data () {
       return {
+        dlgShow: false,
         tableData: [{
           studentNo: 1
         }]
@@ -91,10 +100,13 @@
     },
     methods: {
       add () {
-
+        this.dlgShow = true
       },
       goDetail () {
         this.$router.push({ name: 'studentDetail' })
+      },
+      dlgClose () {
+        this.dlgShow = false
       }
     }
   }
