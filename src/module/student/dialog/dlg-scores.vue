@@ -43,19 +43,19 @@
       </el-form-item>
 
       <el-form-item
-        label="语文">
+        label="学科">
         <el-input
           v-model.number="formScores.chinese" />
       </el-form-item>
 
       <el-form-item
-        label="数学">
+        label="总分">
         <el-input
           v-model="formScores.mathematics" />
       </el-form-item>
 
       <el-form-item
-        label="英语">
+        label="成绩">
         <el-input
           v-model="formScores.english" />
       </el-form-item>

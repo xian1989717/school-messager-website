@@ -45,6 +45,18 @@
             :value="item.value">
           </el-option>
         </el-select>
+        <el-select
+          v-model="value"
+          size="small"
+          placeholder="学科"
+          style="width:180px;margin-left:5px;">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
     </div>
 
@@ -67,15 +79,15 @@
         width="180" />
       <el-table-column
         prop="uploadTime"
-        label="语文"
+        label="学科"
         width="180" />
       <el-table-column
         prop="uploadTime"
-        label="数学"
+        label="总分"
         width="180" />
       <el-table-column
         prop="uploadTime"
-        label="英语"
+        label="成绩"
         width="180" />
       <el-table-column
         prop="remark"
